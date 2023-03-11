@@ -26,8 +26,8 @@ const Schema = mongoose.Schema
 
 const Note = new Schema(
     {
-        topic: { type: String, required: false },
-        note: { type: String, required: false },
+        topic: { type: String, required: true },
+        note: { type: String, required: true },
     },
     { timestamps: true },
 )

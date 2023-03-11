@@ -215,7 +215,8 @@ before proceeding with the execution of the following statement.
 */
 
 deleteNote = async (req, res) => {
-    await Note.findOneAndDelete({ _id: req.params.id }, (err, Note) => {
+    const { topic, note } = req.body;
+    await Note.findOneAndDelete({ topic: topic, note: note }, (err, Note) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -225,6 +226,11 @@ deleteNote = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Note not found` })
         }
+
+        return res.status(200).json({ success: true, data: Note })
+    }).catch(err => console.log(err))
+}
+
 
 /*return res.status(200).json({ success: true, data: Note })
 This line of code is sending an HTTP response to the client with a status code of 200 and a
@@ -243,11 +249,6 @@ This JSON response allows the client to know that the request was successful and
 This will be the final message that the client will recieve, indicating that the Note deletion was successful.
 
 */
-
-return res.status(200).json({ success: true, data: Note })
-    })
-    .catch(err => console.log(err))
-}
 
 
 getNoteById = async (req, res) => {
