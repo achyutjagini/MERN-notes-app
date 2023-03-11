@@ -1,6 +1,28 @@
 .App {
   text-align: center;
 }
+.center-style
+{
+  text-align: center;
+  
+}
+
+.notelist-first
+{
+font-size: 18px;
+font-style: normal;
+background-color: white;
+padding-right: 30px;
+
+}
+
+.notelist
+{
+font-size: 18px;
+font-style: normal;
+background-color: white;
+padding-left: 100px;
+}
 
 .App-logo {
   height: 40vmin;

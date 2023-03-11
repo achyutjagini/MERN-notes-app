@@ -42,8 +42,8 @@ class NotesInsert extends Component
         super(props)
 
         this.state = {
-            name: '',
-            topic: '',
+           topic:"",
+           note:""
         }
     }
 
@@ -56,34 +56,34 @@ class NotesInsert extends Component
 //event handler attached to an input and called when value of input changes
 //the event.target object,represents the input element that triggered the event
 
-    handleChangeInputName = async event => {
-        const name = event.target.value
-        this.setState({ name })
+    handleChangeInputTopic = async event => {
+        const topic = event.target.value
+        this.setState({ topic })
     }
 
-    handleChangeInputTopic = async event => {
-        const topic = event.target.validity.valid ?event.target.value: this.state.topic
+    handleChangeInputNote = async event => {
+        const note = event.target.validity.valid ?event.target.value: this.state.topic
 
-        this.setState({ topic })
+        this.setState({ note})
     }
     
 
     handleIncludeNote = async () => {
-        const { name,topic } = this.state
+        const { topic,note } = this.state
       //  const arrayTime = time.split('/')
-        const payload = { name,topic }
+        const payload = { topic,note }
 
         await api.insertNote(payload).then(res => {
             window.alert(`Note inserted successfully`)
             this.setState({
-                name: '',
-                topic:''
+                topic: '',
+                note:''
             })
         })
     }
 
     render() {
-        const { name, topic } = this.state
+        const { topic,note } = this.state
         //const name=this.state.name
 
         return (
@@ -91,18 +91,18 @@ class NotesInsert extends Component
             <Wrapper>
                 <Title>Create Note</Title>
 
-                <Label>Name: </Label>
-                <InputText
-                    type="text"
-                    value={name}
-                    onChange={this.handleChangeInputName}
-                />
-
-            <Label>Topic </Label>
+                <Label>Topic: </Label>
                 <InputText
                     type="text"
                     value={topic}
                     onChange={this.handleChangeInputTopic}
+                />
+
+            <Label>Note </Label>
+                <InputText
+                    type="text"
+                    value={note}
+                    onChange={this.handleChangeInputNote}
                 />
 
 

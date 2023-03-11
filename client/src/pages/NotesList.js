@@ -4,6 +4,7 @@ import api from '../api'
 
 import styled from 'styled-components'
 import 'react-table/react-table.css'
+import './NotesList.css'
 
 //This line of code is importing the CSS styles for the React Table library. 
 //The React Table library is a lightweight, fast, and 
@@ -166,16 +167,15 @@ class NotesList extends Component {
     }
 
 
-
     render() {
         const { notes, isLoading } = this.state
 
         const columns = [
-            {
+         /*   {
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
-            },
+            },*/
             {
                 Header: 'topic',
                 accessor: 'topic',
@@ -198,7 +198,7 @@ class NotesList extends Component {
 
         return (
             <div>
-                <h1>abcd</h1>
+                <h1 class="heading">Notes</h1>
                 {showTable && (
                     <ReactTable
                         data={notes}
