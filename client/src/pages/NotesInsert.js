@@ -1,81 +1,51 @@
+import React, { useState } from 'react';
+import api from '../api';
+import './NotesInsert.css';
+import { BrowserRouter as Router, Switch, Route,Link } from 'react-router-dom';
 
-import React, { Component } from 'react'
-import api from '../api'
-import './NotesInsert.css'
+function NotesInsert()
+{
+  const [topic, setTopic] = useState('');
+  const [note, setNote] = useState('');
+  
 
-class NotesInsert extends Component 
-{    
-    constructor(props) {
-        super(props)
+  const handleChangeInputTopic = (event) => {
+    const { value } = event.target;
+    setTopic(value);
+  };
 
-        this.state = {
-           topic:"",
-           note:""
-        }
-    }
+  const handleChangeInputNote = (event) => {
+    const { value } = event.target;
+    setNote(value);
+  };
+  
 
-//This is a method that updates the name property of the component's state based on the value of an input 
-//field.
+  const handleIncludeNote = async () => {
+    const payload = { topic, note };
 
-//updating state causes component to re-render
-//render() method is called
+    await api.insertNote(payload).then((res) => {
+      window.alert(`Note inserted successfully`);
+      setTopic('');
+      setNote('');
+    });
+  };
 
-//event handler attached to an input and called when value of input changes
-//the event.target object,represents the input element that triggered the event
+  return (
+    <div class="container">
+      <h3>Create Note</h3>
 
-    handleChangeInputTopic = async event => {
-        const topic = event.target.value
-        this.setState({ topic })
-    }
+      <label>Topic: </label>
+      <input type="text" value={topic} onChange={handleChangeInputTopic} />
 
-    handleChangeInputNote = async event => {
-        const note = event.target.validity.valid ?event.target.value: this.state.topic
+      <label>Note </label>
+      <input type="text" value={note} onChange={handleChangeInputNote} />
 
-        this.setState({ note})
-    }
-    
+      <button onClick={handleIncludeNote}>Add Note</button>
+      <Link to="/Note/list">
+          <button>Cancel</button>
+        </Link>
+    </div>
+  );
+};
 
-    handleIncludeNote = async () => {
-        const { topic,note } = this.state
-      //  const arrayTime = time.split('/')
-        const payload = { topic,note }
-
-        await api.insertNote(payload).then(res => {
-            window.alert(`Note inserted successfully`)
-            this.setState({
-                topic: '',
-                note:''
-            })
-        })
-    }
-
-    render() {
-        const { topic,note } = this.state
-        //const name=this.state.name
-
-        return (
-            <div class="container">
-                <h3>Create Note</h3>
-
-                <label>Topic: </label>
-                <input
-                    type="text"
-                    value={topic}
-                    onChange={this.handleChangeInputTopic}
-                />
-
-            <label>Note </label>
-                <input
-                    type="text"
-                    value={note}
-                    onChange={this.handleChangeInputNote}
-                />
-
-                <button onClick={this.handleIncludeNote}>Add Note</button>
-                <button href={'/Notes/list'}>Cancel</button>
-            </div>
-        )
-    }
-}
-
-export default NotesInsert
+export default NotesInsert;

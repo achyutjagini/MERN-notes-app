@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route,Link } from 'react-router-dom';
 
 
 //import { NotesList, NotesInsert, NotesUpdate } from './pages'
-import { NotesList, NotesInsert } from './pages'
+import { NotesList, NotesInsert ,NotesDelete} from './pages'
 
 
 import {HomePage} from './pages'
@@ -26,7 +26,7 @@ function App() {
                 <Switch>
                 <Route path="/Note/list" exact component={NotesList} />
                 <Route path="/Note/new-note" exact component={NotesInsert} />
-          {/*   <Route path="/Note/delete-note" exact component={NotesDelete} /> */}
+                <Route path="/Note/delete-note" exact component={NotesDelete} /> 
                 </Switch>
                 
 

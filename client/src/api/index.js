@@ -17,14 +17,15 @@ export const insertNote = payload => api.post(`/Note`, payload)
 export const getAllNotes = () => api.get(`/Notes`)
 
 export const updateNoteById = (id, payload) => api.put(`/Note/${id}`, payload)
-export const deleteNoteById = id => api.delete(`/Note/${id}`)
+export const deleteNote = (topic,note) => api.delete(`/Note`)
+
 export const getNoteById = id => api.get(`/Note/${id}`)
 
 const apis = {
     insertNote,
     getAllNotes,
     updateNoteById,
-    deleteNoteById,
+    deleteNote,
     getNoteById,
 }
 
