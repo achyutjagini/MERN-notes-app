@@ -22,9 +22,11 @@ function App() {
                <br></br>
                 <Link to="/Note/list" className='notelist-first'>NotesList</Link>
                 <Link to="/Note/new-note" className='notelist'>New note </Link>
+                <Link to="/Note/delete-note" className='notelist'>Delete note </Link>
                 <Switch>
                 <Route path="/Note/list" exact component={NotesList} />
                 <Route path="/Note/new-note" exact component={NotesInsert} />
+          {/*   <Route path="/Note/delete-note" exact component={NotesDelete} /> */}
                 </Switch>
                 
 
