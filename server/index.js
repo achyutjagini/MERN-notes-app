@@ -14,10 +14,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-//db is supposed to be a module(folder) that connects to MongoDB database
-//movieRouter is another module that contains the routing information for
-//a "movies" resource.
-
 const db = require('./db')
 const NotesRouter = require('./routes/notes-router')
 
@@ -71,5 +67,5 @@ app.get('/', (req, res) => {
 
 app.use('/api', NotesRouter)
 
-app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))//()=>function has no arguments
+app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
 
