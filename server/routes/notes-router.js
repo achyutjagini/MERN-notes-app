@@ -54,7 +54,7 @@ router.put('/Note/:id', NotesCtrl.updateNote)
 //router.delete('/Note/:id', NoteCtrl.deleteNote) is defining a route for 
 //deleting a Note with a HTTP DELETE request at the path '/Note/:id', and it maps
 // it to the deleteNote function exported by Note-ctrl.
-router.delete('/Note', NotesCtrl.deleteNote)
+router.delete('/Note/:topic/:note', NotesCtrl.deleteNote);
 router.get('/Note/:id', NotesCtrl.getNoteById)
 router.get('/Notes', NotesCtrl.getNotes)
 

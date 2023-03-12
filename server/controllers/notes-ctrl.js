@@ -215,22 +215,17 @@ before proceeding with the execution of the following statement.
 */
 
 deleteNote = async (req, res) => {
-    const { topic, note } = req.body;
-    await Note.findOneAndDelete({ topic: topic, note: note }, (err, Note) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
+    const { topic, note } = req.params;
+    try {
+        const deletedNote = await Note.findOneAndDelete({ topic, note });
+        if (!deletedNote) {
+            return res.status(404).json({ success: false, error: 'Note not found' });
         }
-
-        if (!Note) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Note not found` })
-        }
-
-        return res.status(200).json({ success: true, data: Note })
-    }).catch(err => console.log(err))
+        return res.status(200).json({ success: true, data: deletedNote });
+    } catch (err) {
+        return res.status(400).json({ success: false, error: err });
+    }
 }
-
 
 /*return res.status(200).json({ success: true, data: Note })
 This line of code is sending an HTTP response to the client with a status code of 200 and a
