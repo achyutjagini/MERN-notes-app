@@ -17,7 +17,8 @@ export const insertNote = payload => api.post(`/Note`, payload)
 export const getAllNotes = () => api.get(`/Notes`)
 
 export const updateNoteById = (id, payload) => api.put(`/Note/${id}`, payload)
-export const deleteNote = (topic,note) => api.delete(`/Note`)
+export const deleteNote = (topic, note) => api.delete(`/Note/${topic}/${note}`);
+//export const deleteNote = (topic, note) => api.delete(`/Note?topic=${topic}&note=${note}`);
 
 export const getNoteById = id => api.get(`/Note/${id}`)
 

@@ -5,15 +5,6 @@ import styled from 'styled-components';
 import 'react-table/react-table.css';
 import './NotesList.css';
 
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`;
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`;
 
 const NotesList = () => {
     const [notes, setNotes] = useState([]);
@@ -27,8 +18,8 @@ const NotesList = () => {
             setNotes(result.data.data);
             setIsLoading(false);
         };
-
-        fetchNotes();
+     fetchNotes();
+    
     }, []);
 
     const columns = [
